@@ -1,5 +1,5 @@
 class Person {
-    protected name: string;
+     name: string;
     protected age: number;
     //private mail: string;
     constructor(name: string, age: number) {
