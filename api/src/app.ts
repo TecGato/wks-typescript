@@ -3,6 +3,7 @@ import config from './lib/config';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import morgan from 'morgan';
+import routes from './routes/index';
 
 interface error {
     status: number;
@@ -31,8 +32,6 @@ app.use((err:error, req:Request, res:Response, next:NextFunction) => {
  res.status(status).send(message);
 });
 
-app.get('/', (req:Request, res:Response) => {
-    res.send("Hola Typescript")
-});
+app.use('/api', routes)
 
 export default app;
