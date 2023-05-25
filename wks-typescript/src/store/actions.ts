@@ -2,7 +2,7 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import { ActionTypes } from "./types";
 
-const url = 'https://localhost:3001/user';
+const url = 'http://localhost:3001/api/user';
 
 export interface User {
     id: number,
@@ -20,6 +20,21 @@ export const fetchUsers = () => {
         dispatch<FetchUsersAction>({
             type: ActionTypes.fetchUsers,
             payload: response.data
+        })
+    }
+}
+
+export interface DeleteUserAction {
+    type: ActionTypes.deleteUser,
+    payload: number
+}
+
+export const deleteUser = (id: number) => {
+    return async (dispatch: Dispatch) => {
+        await axios.delete(`${url}/${id}`);
+        dispatch<DeleteUserAction>({
+            type: ActionTypes.deleteUser,
+            payload: id
         })
     }
 }

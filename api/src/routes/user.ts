@@ -19,4 +19,15 @@ router.post('/', (req:Request, res:Response, next:NextFunction) => {
     .catch((err) => next(err));
 });
 
+router.delete("/:id", (req:Request, res:Response, next:NextFunction) => {
+    const id = req.params.id
+    User.destroy({
+        where: {
+            id: id
+            }
+            }).then(() => {
+                res.send("User deleted");
+            }).catch((err) => console.log(err));
+});
+
 export default router;
